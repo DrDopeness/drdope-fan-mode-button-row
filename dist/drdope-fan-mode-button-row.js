@@ -79,7 +79,7 @@ class CustomFanModeRow extends LitElement {
 				background-color: #759aaa;
 				border: 1px solid lightgrey; 
 				border-radius: 4px;
-				font-size: 10px !important;
+				font-size: 7px !important;
 				color: inherit;
 				text-align: center;
 				float: left !important;
