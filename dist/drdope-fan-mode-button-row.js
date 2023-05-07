@@ -142,7 +142,6 @@ class CustomFanModeRow extends LitElement {
 		const config = this._config;
 		const stateObj = this.hass.states[config.entity];
 		const sendStateWithMode = config.sendStateWithMode;
-		const revButtons = config.reverseButtons;
 		const buttonWidth = config.width;
 		const buttonHeight = config.height;
 		const onM0Clr = config.isOnModeZeroColor;
@@ -185,7 +184,7 @@ class CustomFanModeRow extends LitElement {
 
 
 		offtext = "OFF";
-		m0text = "UNIC"
+		m0text = "UNICORN"
 		m1text = "LOW";
 		m2text = "MED";
 		m3text = "HIGH";
