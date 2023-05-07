@@ -1,7 +1,7 @@
 window.customCards = window.customCards || [];
 window.customCards.push({
-  type: "fan-mode-button-row",
-  name: "fan mode button row",
+	type: "drdope-fan-mode-button-row",
+  name: "drdope fan mode button row",
   description: "A plugin to display your fan controls in a button row.",
   preview: false,
 });
@@ -394,4 +394,4 @@ class CustomFanModeRow extends LitElement {
 	}
 }
 	
-customElements.define('fan-mode-button-row', CustomFanModeRow);
+customElements.define('drdope-fan-mode-button-row', CustomFanModeRow);
