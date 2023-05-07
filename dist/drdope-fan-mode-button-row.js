@@ -403,7 +403,10 @@ class CustomFanModeRow extends LitElement {
 	setMode(e) {
 		const mode = e.currentTarget.getAttribute('name');
 		const param = {entity_id: this._config.entity};
-		if(this._config.sendStateWithMode) {
+		if(mode == 'off' ){
+			this.hass.callService('fan', 'turn_off', param);
+		} else {
+			if (this._config.sendStateWithMode) {
 				this.hass.callService('fan', 'turn_on', param);
 			} if (mode == 'mode0') {
 				param.preset_mode = this._modeZero;
