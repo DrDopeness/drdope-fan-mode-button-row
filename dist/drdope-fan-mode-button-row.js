@@ -28,15 +28,18 @@ class CustomFanModeRow extends LitElement {
 			customModes: false,
 			customText: false,
 			modeOff: "none",
+			modeZero: "unicorn",
 			modeOne: "low",
 			modeTwo: "medium",
 			modeThree: "high",
 			isOffColor: '#f44c09',
+			isOnModeZer0Color: '#43A047',
 			isOnModeOneColor: '#43A047',
 			isOnModeTwoColor: '#43A047',
 			isOnModeThreeColor: '#43A047',
 			buttonInactiveColor: '#759aaa',
 			customOffText: 'OFF',
+			customModeZeroText: 'UNIC',
 			customModeOneText: 'LOW',
 			customModeTwoText: 'MED',
 			customModeThreeText: 'HIGH',
@@ -53,6 +56,7 @@ class CustomFanModeRow extends LitElement {
 			_config: Object,
 			_stateObj: Object,
 			_modeOff: String,
+			_modeZero: String,
 			_modeOne: String,
 			_modeTwo: String,
 			_modeThree: String,
@@ -163,28 +167,34 @@ class CustomFanModeRow extends LitElement {
 		const hide_Off = config.hideOff;
 		const buttonWidth = config.width;
 		const buttonHeight = config.height;
+		const onM0Clr = config.isOnModeZeroColor;
 		const onM1Clr = config.isOnModeOneColor;
 		const onM2Clr = config.isOnModeTwoColor;
 		const onM3Clr = config.isOnModeThreeColor;
 		const offClr = config.isOffColor;
 		const buttonOffClr = config.buttonInactiveColor;
 		const mOff = config.modeOff;
+		const m0 = config.modeZero;
 		const m1 = config.modeOne;
 		const m2 = config.modeTwo;
 		const m3 = config.modeThree;
 		const custOffTxt = config.customOffText;
+		const custM0Txt = config.customModeZeroText;
 		const custM1Txt = config.customModeOneText;
 		const custM2Txt = config.customModeTwoText;
 		const custM3Txt = config.customModeThreeText;
 						
 		let offstate;
+		let mode0;
 		let mode1;
 		let mode2;
 		let mode3;
 		
 		if (custModes) {
 			if (stateObj && stateObj.attributes) {
-				if (stateObj.state == 'on' && stateObj.attributes.preset_mode == m1 ) {
+				if (stateObj.state == 'on' && stateObj.attributes.preset_mode == m0) {
+					mode0 = 'on';
+				} else if (stateObj.state == 'on' && stateObj.attributes.preset_mode == m1 ) {
 					mode1 = 'on';
 				} else if (stateObj.state == 'on' && stateObj.attributes.preset_mode == m2 ) {
 					mode2 = 'on';
@@ -196,7 +206,9 @@ class CustomFanModeRow extends LitElement {
 			}
 		} else {
 			if (stateObj && stateObj.attributes) {
-				if (stateObj.state == 'on' && stateObj.attributes.preset_mode == "low" ) {
+				if (stateObj.state == 'on' && stateObj.attributes.preset_mode == "unicorn") {
+					mode0 = 'on';
+				} else if (stateObj.state == 'on' && stateObj.attributes.preset_mode == "low" ) {
 					mode1 = 'on';
 				} else if (stateObj.state == 'on' && stateObj.attributes.preset_mode == "medium" ) {
 					mode2 = 'on';
@@ -209,27 +221,32 @@ class CustomFanModeRow extends LitElement {
 		}
 		
 		let offtext;
+		let m0text;
 		let m1text;
 		let m2text;
 		let m3text;
 		
 		if (custText) {
 			offtext = custOffTxt;
+			m0text = custM0Txt;
 			m1text = custM1Txt;
 			m2text = custM2Txt;
 			m3text = custM3Txt;
 		} else if (custModes) {
 			offtext = mOff;
+			m0text = m0;
 			m1text = m1;
 			m2text = m2;
 			m3text = m3;
 		} else {
 			offtext = "OFF";
+			m0text = "UNIC"
 			m1text = "LOW";
 			m2text = "MED";
 			m3text = "HIGH";
 		}
 		
+		let mode0color;
 		let mode1color;
 		let mode2color;
 		let mode3color;
@@ -237,6 +254,11 @@ class CustomFanModeRow extends LitElement {
 
 				
 		if (custTheme) {
+			if (mode0 == 'on') {
+				mode0color = 'background-color:' + onM0Clr;
+			} else {
+				mode0color = 'background-color:' + buttonOffClr;
+			}
 			if (mode1 == 'on') {
 				mode1color = 'background-color:' + onM1Clr;
 			} else {
@@ -258,6 +280,11 @@ class CustomFanModeRow extends LitElement {
 				offcolor = 'background-color:' + buttonOffClr;
 			}
 		} else {
+			if (mode0 == 'on') {
+				mode0color = 'background-color: var(--switch-checked-color)';
+			} else {
+				mode0color = 'background-color: var(--switch-unchecked-color)';
+			}
 			if (mode1 == 'on') {
 				mode1color = 'background-color: var(--switch-checked-color)';
 			} else {
@@ -309,31 +336,33 @@ class CustomFanModeRow extends LitElement {
 		let buttonheight = buttonHeight;
 		
 		let offname = 'off'
+		let m0name = 'mode0'
 		let m1name = 'mode1'
 		let m2name = 'mode2'
 		let m3name = 'mode3'
 		
 		if (revButtons) {
 			this._stateObj = stateObj;
-			this._leftState = mode1 == 'on';
+			this._leftState = mode0 == 'on';
 			this._midLeftState = mode1 === 'on';
 			this._midRightState = mode2 === 'on';
 			this._rightState = mode3 === 'on';
 			this._width = buttonwidth;
 			this._height = buttonheight;
-			this._leftColor = mode1color;
+			this._leftColor = mode0color;
 			this._midLeftColor = mode1color;
 			this._midRightColor = mode2color;
 			this._rightColor = mode3color;
 			this._modeOff = mOff;
+			this._modeOne = m0;
 			this._modeOne = m1;
 			this._modeTwo = m2;
 			this._modeThree = m3;
-			this._leftText = m1text;
+			this._leftText = m0text;
 			this._midLeftText = m1text;
 			this._midRightText = m2text;
 			this._rightText = m3text;
-			this._leftName = m1name;
+			this._leftName = m0name;
 			this._midLeftName = m1name;
 			this._midRightName = m2name;
 			this._rightName = m3name;
