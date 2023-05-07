@@ -16,7 +16,6 @@ class CustomFanModeRow extends LitElement {
 	constructor() {
 		super();
 		this._config = {
-			reverseButtons: false,
 			width: '30px',
 			height: '30px',
 			sendStateWithMode: false,
@@ -157,41 +156,41 @@ class CustomFanModeRow extends LitElement {
 		const m1 = config.modeOne;
 		const m2 = config.modeTwo;
 		const m3 = config.modeThree;
-						
+
 		let offstate;
 		let mode0;
 		let mode1;
 		let mode2;
 		let mode3;
-		
-				if (stateObj && stateObj.attributes) {
+
+		if (stateObj && stateObj.attributes) {
 			if (stateObj.state == 'on' && stateObj.attributes.preset_mode == "unicorn") {
 				mode0 = 'on';
-			} else if (stateObj.state == 'on' && stateObj.attributes.preset_mode == "low" ) {
+			} else if (stateObj.state == 'on' && stateObj.attributes.preset_mode == "low") {
 				mode1 = 'on';
-			} else if (stateObj.state == 'on' && stateObj.attributes.preset_mode == "medium" ) {
+			} else if (stateObj.state == 'on' && stateObj.attributes.preset_mode == "medium") {
 				mode2 = 'on';
-			} else if (stateObj.state == 'on' && stateObj.attributes.preset_mode == "high" ) {
+			} else if (stateObj.state == 'on' && stateObj.attributes.preset_mode == "high") {
 				mode3 = 'on';
 			} else {
 				offstate = 'on';
-			}	
+			}
 		}
-		
+
 		let offtext;
 		let m0text;
 		let m1text;
 		let m2text;
 		let m3text;
-		
-		
+
+
 		offtext = "OFF";
 		m0text = "UNIC"
 		m1text = "LOW";
 		m2text = "MED";
 		m3text = "HIGH";
 
-		
+
 		let mode0color;
 		let mode1color;
 		let mode2color;
@@ -223,70 +222,45 @@ class CustomFanModeRow extends LitElement {
 		} else {
 			offcolor = 'background-color: var(--switch-unchecked-color)';
 		}
-		
+
 
 		let buttonwidth = buttonWidth;
 		let buttonheight = buttonHeight;
-		
+
 		let offname = 'off'
 		let m0name = 'mode0'
 		let m1name = 'mode1'
 		let m2name = 'mode2'
 		let m3name = 'mode3'
-		
-		if (revButtons) {
-			this._stateObj = stateObj;
-			this._leftState = mode0 == 'on';
-			this._midLeftState = mode1 === 'on';
-			this._midRightState = mode2 === 'on';
-			this._rightState = mode3 === 'on';
-			this._width = buttonwidth;
-			this._height = buttonheight;
-			this._leftColor = mode0color;
-			this._midLeftColor = mode1color;
-			this._midRightColor = mode2color;
-			this._rightColor = mode3color;
-			this._modeZero = m0;
-			this._modeOne = m1;
-			this._modeTwo = m2;
-			this._modeThree = m3;
-			this._leftText = m0text;
-			this._midLeftText = m1text;
-			this._midRightText = m2text;
-			this._rightText = m3text;
-			this._leftName = m0name;
-			this._midLeftName = m1name;
-			this._midRightName = m2name;
-			this._rightName = m3name;
-			this._hideLeft = hideoff;
-			this._hideMidLeft = twomodes_left;
-			this._hideMidRight = twomodes_right;
-			this._hideRight = nohide;
-		} else {
-			this._stateObj = stateObj;
-			this._leftState = mode3 == 'on';
-			this._midLeftState = mode2 === 'on';
-			this._midRightState = mode1 === 'on';
-			this._rightState = offstate === 'on';
-			this._width = buttonwidth;
-			this._height = buttonheight;
-			this._leftColor = mode3color;
-			this._midLeftColor = mode2color;
-			this._midRightColor = mode1color;
-			this._rightColor = offcolor;
-			this._modeOff = mOff;
-			this._modeOne = m1;
-			this._modeTwo = m2;
-			this._modeThree = m3;
-			this._leftText = m3text;
-			this._midLeftText = m2text;
-			this._midRightText = m1text;
-			this._rightText = offtext;
-			this._leftName = m3name;
-			this._midLeftName = m2name;
-			this._midRightName = m1name;
-			this._rightName = offname;
-		}
+
+
+		this._stateObj = stateObj;
+		this._leftState = mode0 == 'on';
+		this._midLeftState = mode1 === 'on';
+		this._midRightState = mode2 === 'on';
+		this._rightState = mode3 === 'on';
+		this._width = buttonwidth;
+		this._height = buttonheight;
+		this._leftColor = mode0color;
+		this._midLeftColor = mode1color;
+		this._midRightColor = mode2color;
+		this._rightColor = mode3color;
+		this._modeZero = m0;
+		this._modeOne = m1;
+		this._modeTwo = m2;
+		this._modeThree = m3;
+		this._leftText = m0text;
+		this._midLeftText = m1text;
+		this._midRightText = m2text;
+		this._rightText = m3text;
+		this._leftName = m0name;
+		this._midLeftName = m1name;
+		this._midRightName = m2name;
+		this._rightName = m3name;
+		this._hideLeft = hideoff;
+		this._hideMidLeft = twomodes_left;
+		this._hideMidRight = twomodes_right;
+		this._hideRight = nohide;
 	}
 
 	setMode(e) {
