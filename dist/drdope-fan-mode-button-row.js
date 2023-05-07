@@ -354,7 +354,7 @@ class CustomFanModeRow extends LitElement {
 			this._midRightColor = mode2color;
 			this._rightColor = mode3color;
 			this._modeOff = mOff;
-			this._modeOne = m0;
+			this._modeZero = m0;
 			this._modeOne = m1;
 			this._modeTwo = m2;
 			this._modeThree = m3;
