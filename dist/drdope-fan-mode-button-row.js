@@ -315,13 +315,13 @@ class CustomFanModeRow extends LitElement {
 		
 		if (revButtons) {
 			this._stateObj = stateObj;
-			this._leftState = offstate == 'on';
+			this._leftState = mode1 == 'on';
 			this._midLeftState = mode1 === 'on';
 			this._midRightState = mode2 === 'on';
 			this._rightState = mode3 === 'on';
 			this._width = buttonwidth;
 			this._height = buttonheight;
-			this._leftColor = offcolor;
+			this._leftColor = mode1color;
 			this._midLeftColor = mode1color;
 			this._midRightColor = mode2color;
 			this._rightColor = mode3color;
@@ -329,11 +329,11 @@ class CustomFanModeRow extends LitElement {
 			this._modeOne = m1;
 			this._modeTwo = m2;
 			this._modeThree = m3;
-			this._leftText = offtext;
+			this._leftText = m1text;
 			this._midLeftText = m1text;
 			this._midRightText = m2text;
 			this._rightText = m3text;
-			this._leftName = offname;
+			this._leftName = m1name;
 			this._midLeftName = m1name;
 			this._midRightName = m2name;
 			this._rightName = m3name;
