@@ -79,7 +79,7 @@ class CustomFanModeRow extends LitElement {
 				background-color: #759aaa;
 				border: 1px solid lightgrey; 
 				border-radius: 4px;
-				font-size: 7px !important;
+				font-size: 8px !important;
 				color: inherit;
 				text-align: center;
 				float: left !important;
@@ -184,7 +184,7 @@ class CustomFanModeRow extends LitElement {
 
 
 		offtext = "OFF";
-		m0text = "UNICORN"
+		m0text = "UNIC"
 		m1text = "LOW";
 		m2text = "MED";
 		m3text = "HIGH";
