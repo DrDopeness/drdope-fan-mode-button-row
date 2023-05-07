@@ -184,7 +184,7 @@ class CustomFanModeRow extends LitElement {
 
 
 		offtext = "OFF";
-		m0text = "UNIC"
+		m0text = "UNICO"
 		m1text = "LOW";
 		m2text = "MED";
 		m3text = "HIGH";
