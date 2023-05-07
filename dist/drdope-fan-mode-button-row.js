@@ -16,17 +16,10 @@ class CustomFanModeRow extends LitElement {
 	constructor() {
 		super();
 		this._config = {
-			customTheme: false,
-			customSetpoints: false,
 			reverseButtons: false,
 			width: '30px',
 			height: '30px',
-			twoModeFan: false,
-			hideOff: false,
 			sendStateWithMode: false,
-			allowDisablingButtons: true,
-			customModes: false,
-			customText: false,
 			modeOff: "none",
 			modeZero: "unicorn",
 			modeOne: "low",
@@ -38,15 +31,6 @@ class CustomFanModeRow extends LitElement {
 			isOnModeTwoColor: '#43A047',
 			isOnModeThreeColor: '#43A047',
 			buttonInactiveColor: '#759aaa',
-			customOffText: 'OFF',
-			customModeZeroText: 'UNIC',
-			customModeOneText: 'LOW',
-			customModeTwoText: 'MED',
-			customModeThreeText: 'HIGH',
-			customOffText: 'OFF',
-			customLowText: 'LOW',
-			customMedText: 'MED',
-			customHiText: 'HIGH',
 		};
 	}
 	
@@ -158,13 +142,8 @@ class CustomFanModeRow extends LitElement {
 
 		const config = this._config;
 		const stateObj = this.hass.states[config.entity];
-		const custTheme = config.customTheme;
 		const sendStateWithMode = config.sendStateWithMode;
 		const revButtons = config.reverseButtons;
-		const custModes = config.customModes;
-		const custText = config.customText;
-		const twoModes = config.twoModeFan;
-		const hide_Off = config.hideOff;
 		const buttonWidth = config.width;
 		const buttonHeight = config.height;
 		const onM0Clr = config.isOnModeZeroColor;
@@ -178,11 +157,6 @@ class CustomFanModeRow extends LitElement {
 		const m1 = config.modeOne;
 		const m2 = config.modeTwo;
 		const m3 = config.modeThree;
-		const custOffTxt = config.customOffText;
-		const custM0Txt = config.customModeZeroText;
-		const custM1Txt = config.customModeOneText;
-		const custM2Txt = config.customModeTwoText;
-		const custM3Txt = config.customModeThreeText;
 						
 		let offstate;
 		let mode0;
@@ -190,34 +164,18 @@ class CustomFanModeRow extends LitElement {
 		let mode2;
 		let mode3;
 		
-		if (custModes) {
-			if (stateObj && stateObj.attributes) {
-				if (stateObj.state == 'on' && stateObj.attributes.preset_mode == m0) {
-					mode0 = 'on';
-				} else if (stateObj.state == 'on' && stateObj.attributes.preset_mode == m1 ) {
-					mode1 = 'on';
-				} else if (stateObj.state == 'on' && stateObj.attributes.preset_mode == m2 ) {
-					mode2 = 'on';
-				} else if (stateObj.state == 'on' && stateObj.attributes.preset_mode == m3 ) {
-					mode3 = 'on';
-				} else {
-					offstate = 'on';
-				}	
-			}
-		} else {
-			if (stateObj && stateObj.attributes) {
-				if (stateObj.state == 'on' && stateObj.attributes.preset_mode == "unicorn") {
-					mode0 = 'on';
-				} else if (stateObj.state == 'on' && stateObj.attributes.preset_mode == "low" ) {
-					mode1 = 'on';
-				} else if (stateObj.state == 'on' && stateObj.attributes.preset_mode == "medium" ) {
-					mode2 = 'on';
-				} else if (stateObj.state == 'on' && stateObj.attributes.preset_mode == "high" ) {
-					mode3 = 'on';
-				} else {
-					offstate = 'on';
-				}	
-			}
+				if (stateObj && stateObj.attributes) {
+			if (stateObj.state == 'on' && stateObj.attributes.preset_mode == "unicorn") {
+				mode0 = 'on';
+			} else if (stateObj.state == 'on' && stateObj.attributes.preset_mode == "low" ) {
+				mode1 = 'on';
+			} else if (stateObj.state == 'on' && stateObj.attributes.preset_mode == "medium" ) {
+				mode2 = 'on';
+			} else if (stateObj.state == 'on' && stateObj.attributes.preset_mode == "high" ) {
+				mode3 = 'on';
+			} else {
+				offstate = 'on';
+			}	
 		}
 		
 		let offtext;
@@ -226,25 +184,13 @@ class CustomFanModeRow extends LitElement {
 		let m2text;
 		let m3text;
 		
-		if (custText) {
-			offtext = custOffTxt;
-			m0text = custM0Txt;
-			m1text = custM1Txt;
-			m2text = custM2Txt;
-			m3text = custM3Txt;
-		} else if (custModes) {
-			offtext = mOff;
-			m0text = m0;
-			m1text = m1;
-			m2text = m2;
-			m3text = m3;
-		} else {
-			offtext = "OFF";
-			m0text = "UNIC"
-			m1text = "LOW";
-			m2text = "MED";
-			m3text = "HIGH";
-		}
+		
+		offtext = "OFF";
+		m0text = "UNIC"
+		m1text = "LOW";
+		m2text = "MED";
+		m3text = "HIGH";
+
 		
 		let mode0color;
 		let mode1color;
@@ -252,85 +198,32 @@ class CustomFanModeRow extends LitElement {
 		let mode3color;
 		let offcolor;
 
-				
-		if (custTheme) {
-			if (mode0 == 'on') {
-				mode0color = 'background-color:' + onM0Clr;
-			} else {
-				mode0color = 'background-color:' + buttonOffClr;
-			}
-			if (mode1 == 'on') {
-				mode1color = 'background-color:' + onM1Clr;
-			} else {
-				mode1color = 'background-color:' + buttonOffClr;
-			}
-			if (mode2 == 'on') {
-				mode2color = 'background-color:'  + onM2Clr;
-			} else {
-				mode2color = 'background-color:' + buttonOffClr;
-			}
-			if (mode3 == 'on') {
-				mode3color = 'background-color:'  + onM3Clr;
-			} else {
-				mode3color = 'background-color:' + buttonOffClr;
-			}
-			if (offstate == 'on') {
-				offcolor = 'background-color:'  + offClr;
-			} else {
-				offcolor = 'background-color:' + buttonOffClr;
-			}
+		if (mode0 == 'on') {
+			mode0color = 'background-color: var(--switch-checked-color)';
 		} else {
-			if (mode0 == 'on') {
-				mode0color = 'background-color: var(--switch-checked-color)';
-			} else {
-				mode0color = 'background-color: var(--switch-unchecked-color)';
-			}
-			if (mode1 == 'on') {
-				mode1color = 'background-color: var(--switch-checked-color)';
-			} else {
-				mode1color = 'background-color: var(--switch-unchecked-color)';
-			}
-			if (mode2 == 'on') {
-				mode2color = 'background-color: var(--switch-checked-color)';
-			} else {
-				mode2color = 'background-color: var(--switch-unchecked-color)';
-			}
-			if (mode3 == 'on') {
-				mode3color = 'background-color: var(--switch-checked-color)';
-			} else {
-				mode3color = 'background-color: var(--switch-unchecked-color)';
-			}
-			if (offstate == 'on') {
-				offcolor = 'background-color: var(--switch-checked-color)';
-			} else {
-				offcolor = 'background-color: var(--switch-unchecked-color)';
-			}
+			mode0color = 'background-color: var(--switch-unchecked-color)';
+		}
+		if (mode1 == 'on') {
+			mode1color = 'background-color: var(--switch-checked-color)';
+		} else {
+			mode1color = 'background-color: var(--switch-unchecked-color)';
+		}
+		if (mode2 == 'on') {
+			mode2color = 'background-color: var(--switch-checked-color)';
+		} else {
+			mode2color = 'background-color: var(--switch-unchecked-color)';
+		}
+		if (mode3 == 'on') {
+			mode3color = 'background-color: var(--switch-checked-color)';
+		} else {
+			mode3color = 'background-color: var(--switch-unchecked-color)';
+		}
+		if (offstate == 'on') {
+			offcolor = 'background-color: var(--switch-checked-color)';
+		} else {
+			offcolor = 'background-color: var(--switch-unchecked-color)';
 		}
 		
-		let hideoff = 'display:block';
-		let nohide = 'display:block';
-		
-		if (hide_Off) {
-			hideoff = 'display:none';
-		} else {
-			hideoff = 'display:block';
-		}
-		
-		let twomodes_left;
-		let twomodes_right;
-		
-		if (twoModes) {
-			if (revButtons) {
-				twomodes_right = 'display:none';
-				twomodes_left = 'display:block';
-			} else {
-				twomodes_left = 'display:none';
-				twomodes_right = 'display:block';
-			}
-		} else {
-			twomodes_left = 'display:block';
-			twomodes_right = 'display:block';
-		}
 
 		let buttonwidth = buttonWidth;
 		let buttonheight = buttonHeight;
@@ -393,10 +286,6 @@ class CustomFanModeRow extends LitElement {
 			this._midLeftName = m2name;
 			this._midRightName = m1name;
 			this._rightName = offname;
-			this._hideLeft = nohide;
-			this._hideMidLeft = twomodes_left;
-			this._hideMidRight = twomodes_right;
-			this._hideRight = hideoff;
 		}
 	}
 
