@@ -408,7 +408,10 @@ class CustomFanModeRow extends LitElement {
 		} else {
 			if (this._config.sendStateWithMode) {
 				this.hass.callService('fan', 'turn_on', param);
-			} if (mode == 'mode1') {
+			} if (mode == 'mode0') {
+				param.preset_mode = this._modeOne;
+				this.hass.callService('fan', 'set_preset_mode', param);
+			} else if (mode == 'mode1') {
 				param.preset_mode = this._modeOne;
 				this.hass.callService('fan', 'set_preset_mode', param);
 			} else if (mode == 'mode2') {
